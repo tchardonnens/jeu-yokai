@@ -1,13 +1,12 @@
 package com.example.yokai;
 
-import javafx.geometry.Pos;
-
 public class YokaiGame {
-    private int score;
+    private int score = 0;
     private int level;
     private Board board;
 
     public void initGame(){
+        board = new Board();
 
     }
 
@@ -24,6 +23,7 @@ public class YokaiGame {
     }
 
     public Position askCardToShow() {
+
         return null;
     }
 
@@ -32,10 +32,12 @@ public class YokaiGame {
     }
 
     public YokaiCard askCardMove() {
+
         return null;
     }
 
     public boolean validateMove(YokaiCard sourceCard, Position targetPosition){
+
         return false;
     }
 
@@ -44,10 +46,12 @@ public class YokaiGame {
     }
 
     public boolean askIfYokaiCalmDown(){
+
         return false;
     }
 
     public boolean isThereEnoughClueCardsLeft(){
+
         return false;
     }
 
@@ -56,10 +60,12 @@ public class YokaiGame {
     }
 
     public int CountScore() {
+
         return 0;
     }
 
     public boolean isWinning() {
+
         return false;
     }
 }

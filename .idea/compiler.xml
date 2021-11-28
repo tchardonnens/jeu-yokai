@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="yokai" target="17" />
+      <module name="yokai" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
