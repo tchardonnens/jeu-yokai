@@ -12,23 +12,78 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-web:win:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-media:win:17.0.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:11.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-javafx:12.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.kordamp.ikonli:ikonli-core:12.2.0" level="project" />
-    <orderEntry type="library" name="Maven: org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0" level="project" />
-    <orderEntry type="library" name="Maven: eu.hansolo:tilesfx:11.48" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx-swt:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx-swt.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx.base:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx.base.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx.controls:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx.controls.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx.fxml:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx.fxml.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx.graphics:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx.graphics.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx.media:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx.media.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx.swing:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx.swing.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: org.openjfx:javafx-web:1.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../../Code/javafx-sdk-18/lib/javafx.web.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.7.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
