@@ -68,4 +68,9 @@ public class YokaiGame {
 
         return false;
     }
+
+    public boolean doYouWantTORestartAnotherGame() {
+
+        return false;
+    }
 }
