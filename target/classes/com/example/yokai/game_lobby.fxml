@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Yokai Game Lobby" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.yokai.GameLobbyController">
+   <content>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <HBox prefHeight="374.0" prefWidth="600.0">
+               <children>
+                  <VBox prefHeight="374.0" prefWidth="191.0">
+                     <children>
+                        <Pane prefHeight="47.0" prefWidth="191.0" />
+                        <Label text="Number of players:">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </Label>
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="9.0" prefWidth="191.0" />
+                        <RadioButton fx:id="Players2Radio" mnemonicParsing="false" onAction="#getNumberOfPlayers" selected="true" text="2">
+                           <padding>
+                              <Insets left="70.0" />
+                           </padding>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="numberOfPlayersRadioGroup" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Pane layoutX="10.0" layoutY="54.0" prefHeight="6.0" prefWidth="191.0" />
+                        <RadioButton fx:id="Players3Radio" layoutX="10.0" layoutY="81.0" mnemonicParsing="false" onAction="#getNumberOfPlayers" text="3" toggleGroup="$numberOfPlayersRadioGroup">
+                           <padding>
+                              <Insets left="70.0" />
+                           </padding>
+                        </RadioButton>
+                        <Pane layoutX="10.0" layoutY="99.0" prefHeight="6.0" prefWidth="191.0" />
+                        <RadioButton fx:id="Players4Radio" layoutX="10.0" layoutY="99.0" mnemonicParsing="false" onAction="#getNumberOfPlayers" selected="true" text="4" toggleGroup="$numberOfPlayersRadioGroup">
+                           <padding>
+                              <Insets left="70.0" />
+                           </padding>
+                        </RadioButton>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="374.0" prefWidth="247.0">
+                     <children>
+                        <Pane prefHeight="20.0" prefWidth="186.0" />
+                        <Label contentDisplay="CENTER" text="Enter your pseudo:" textAlignment="CENTER">
+                           <VBox.margin>
+                              <Insets left="70.0" />
+                           </VBox.margin></Label>
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="8.0" prefWidth="247.0" />
+                        <Label fx:id="player1Label" contentDisplay="CENTER" layoutX="80.0" layoutY="30.0" text="Player 1" textAlignment="CENTER" />
+                        <HBox prefHeight="29.0" prefWidth="186.0">
+                           <children>
+                              <TextField fx:id="nameTextField1" prefHeight="26.0" prefWidth="181.0" />
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="20.0" prefWidth="186.0" />
+                        <Label fx:id="player2Label" contentDisplay="CENTER" layoutX="10.0" layoutY="55.0" text="Player 2" textAlignment="CENTER" />
+                        <HBox layoutX="10.0" layoutY="72.0" prefHeight="29.0" prefWidth="186.0">
+                           <children>
+                              <TextField fx:id="nameTextField2" prefHeight="26.0" prefWidth="181.0" />
+                           </children>
+                        </HBox>
+                        <Pane layoutX="10.0" layoutY="101.0" prefHeight="20.0" prefWidth="186.0" />
+                        <Label fx:id="player3Label" contentDisplay="CENTER" layoutX="10.0" layoutY="121.0" text="Player 3" textAlignment="CENTER" />
+                        <HBox layoutX="10.0" layoutY="121.0" prefHeight="29.0" prefWidth="186.0">
+                           <children>
+                              <TextField fx:id="nameTextField3" prefHeight="26.0" prefWidth="181.0" />
+                           </children>
+                        </HBox>
+                        <Pane layoutX="10.0" layoutY="150.0" prefHeight="20.0" prefWidth="186.0" />
+                        <Label fx:id="player4Label" contentDisplay="CENTER" layoutX="10.0" layoutY="187.0" text="Player 4" textAlignment="CENTER" />
+                        <HBox layoutX="10.0" layoutY="150.0" prefHeight="29.0" prefWidth="186.0">
+                           <children>
+                              <TextField fx:id="nameTextField4" prefHeight="26.0" prefWidth="181.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="374.0" prefWidth="138.0">
+                     <children>
+                        <Pane prefHeight="165.0" prefWidth="222.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="startGameButton" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: green;" text="Start the game" textFill="WHITE">
+                                 <HBox.margin>
+                                    <Insets left="30.0" top="20.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="185.0" prefWidth="222.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </content>
+</TitledPane>
