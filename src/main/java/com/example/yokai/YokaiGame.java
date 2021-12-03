@@ -4,10 +4,28 @@ public class YokaiGame {
     private int score = 0;
     private int level;
     private Board board;
+    private static int numberOfPlayersInGame = 0;
+    private static Player[] playersInGame;
+
+    public static void setPlayers(Player[] players, int numberOfPlayers) {
+        playersInGame = players;
+        numberOfPlayersInGame = numberOfPlayers;
+    }
 
     public void initGame(){
         board = new Board();
+    }
 
+    public static Player[] getPlayers() {
+        return playersInGame;
+    }
+
+    public static int getNumberOfPlayersInGame() {
+        return numberOfPlayersInGame;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void playGame(){

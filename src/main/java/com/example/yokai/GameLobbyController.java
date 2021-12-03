@@ -10,12 +10,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 public class GameLobbyController {
 
@@ -31,7 +29,7 @@ public class GameLobbyController {
 
     public ToggleGroup numberOfPlayersRadioGroup;
 
-    public static Stage gameWindow = new Stage();
+    public Stage gameWindow = new Stage();
 
     int numberOfPlayers = 0;
 
@@ -82,6 +80,8 @@ public class GameLobbyController {
             players[i] = new Player();
             players[i].init(playersName.get(i), null);
         }
+
+        YokaiGame.setPlayers(players, numberOfPlayers);
 
         //Afficher la fenêtre du jeu
         FXMLLoader loader = new FXMLLoader();
