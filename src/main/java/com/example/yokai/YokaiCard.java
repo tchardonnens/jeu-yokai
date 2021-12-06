@@ -1,7 +1,7 @@
 package com.example.yokai;
 
 public class YokaiCard {
-    private YokaiNameEnum name;
+    private YokaiNameEnum.YokaiName name;
     private Position position;
 
     public void init(YokaiNameEnum.YokaiName name, Position position){
@@ -13,7 +13,7 @@ public class YokaiCard {
         this.name = name;
     }
 
-    public YokaiNameEnum getName() {
+    public YokaiNameEnum.YokaiName getName() {
         return name;
     }
 

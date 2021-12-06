@@ -84,14 +84,15 @@ public class GameLobbyController {
         YokaiGame.setPlayers(players, numberOfPlayers);
 
         //Afficher la fenêtre du jeu
+        YokaiGame yokaiGame = new YokaiGame();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("game_board.fxml"));
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         gameWindow.setResizable(false);
         gameWindow.setScene(scene);
         gameWindow.show();
+        yokaiGame.playGame();
 
         //Fermer la fenêtre du lobby
         Node source = (Node) actionEvent.getSource();

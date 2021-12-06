@@ -11,16 +11,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.yokai.GameBoardController">
    <center>
-      <Pane prefHeight="381.0" prefWidth="610.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="381.0" prefWidth="610.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="166.0" layoutY="70.0" prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="44.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="227.0" layoutY="70.0" prefHeight="50.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="44.0" layoutX="3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
    </center>
    <top>
       <HBox prefHeight="70.0" prefWidth="770.0" style="-fx-background-color: #2C2B2B;" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Circle fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="iconPlayer1" fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                   <Text fx:id="textPlayer1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: bold;" text="Player1" textAlignment="CENTER">
                      <font>
                         <Font name="Roboto Light" size="12.0" />
@@ -39,7 +53,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Circle fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE">
+                  <Circle fx:id="iconPlayer2" fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -59,7 +73,7 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Circle fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="iconPlayer3" fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                   <Text fx:id="textPlayer3" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: bold;" text="Player3" textAlignment="CENTER">
                      <font>
                         <Font name="Roboto Light" size="12.0" />
@@ -75,7 +89,7 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Circle fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fx:id="iconPlayer4" fill="#b2b2b2" radius="21.0" stroke="BLACK" strokeType="INSIDE" />
                   <Text fx:id="textPlayer4" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-style: bold;" text="Player4" textAlignment="CENTER">
                      <font>
                         <Font name="Roboto Light" size="12.0" />
@@ -91,7 +105,7 @@
             </VBox>
             <HBox prefHeight="58.0" prefWidth="234.0" spacing="20.0">
                <children>
-                  <Button fx:id="calmedDownButton" minWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: #6B0303; -fx-text-fill: white;" text="All calmed down" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+                  <Button fx:id="calmedDownButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#calmDown" style="-fx-background-color: #6B0303; -fx-text-fill: white;" text="All calmed down" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
                   <Button fx:id="playTurnButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#playTurn" style="-fx-background-color: #0A8100; -fx-text-fill: white;" text="Play turn" textAlignment="CENTER" wrapText="true" />
                </children>
                <padding>
@@ -101,7 +115,8 @@
                   <Insets />
                </HBox.margin>
             </HBox>
-         </children></HBox>
+         </children>
+      </HBox>
    </top>
    <right>
       <VBox prefHeight="356.0" prefWidth="94.0" style="-fx-background-color: #2C2B2B;" BorderPane.alignment="CENTER">
@@ -167,6 +182,7 @@
                   </ImageView>
                </children>
             </VBox>
-         </children></VBox>
+         </children>
+      </VBox>
    </right>
 </BorderPane>
