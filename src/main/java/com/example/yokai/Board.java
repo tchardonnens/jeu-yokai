@@ -5,11 +5,13 @@ import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public class Board {
-    FileInputStream kitsuneImageURL;
+    private GameBoardController controller;
 
+    FileInputStream kitsuneImageURL;
     {
         try {
             kitsuneImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_kitsune.png");
@@ -17,9 +19,7 @@ public class Board {
             e.printStackTrace();
         }
     }
-
     FileInputStream kappaImageURL;
-
     {
         try {
             kappaImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_kappa.png");
@@ -27,9 +27,7 @@ public class Board {
             e.printStackTrace();
         }
     }
-
     FileInputStream rokurokubiImageURL;
-
     {
         try {
             rokurokubiImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_rokurokubi.png");
@@ -37,9 +35,7 @@ public class Board {
             e.printStackTrace();
         }
     }
-
     FileInputStream oniImageURL;
-
     {
         try {
             oniImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_oni.png");
@@ -60,9 +56,16 @@ public class Board {
     private final ArrayList<Position> cardsPoolPositions = new ArrayList<>();
     private final ImageView[] cardImageViews = new ImageView[16];
 
+    public void setCardImageViews(int i, Image image) {
+        cardImageViews[i] = new ImageView(image);
+        cardImageViews[i].setX(yokaiCards[i].getPosition().getX());
+        cardImageViews[i].setY(yokaiCards[i].getPosition().getX());
+        cardImageViews[i].setPreserveRatio(true);
+        yokaiCards[i].setImageView(cardImageViews[i]);
+    }
 
-    //  call init !!!
-    public void init(){
+    public void init(GameBoardController controller){
+        this.controller = controller;
         for (int i = 0; i < 4; i++) {
             cardsPoolNames.add(YokaiNameEnum.YokaiName.KITSUNE);
             cardsPoolNames.add(YokaiNameEnum.YokaiName.ROKUROKUBI);
@@ -83,24 +86,26 @@ public class Board {
         for (int i = 0; i < yokaiCards.length; i++) {
             yokaiCards[i] = new YokaiCard();
             yokaiCards[i].init(cardsPoolNames.get(i), cardsPoolPositions.get(i));
+            if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.KITSUNE){
+                setCardImageViews(i, kitsuneImage);
+            }
+            else if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.KAPPA){
+                setCardImageViews(i, kappaImage);
+            }
+            else if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.ROKUROKUBI){
+                setCardImageViews(i, rokurokubiImage);
+            }
+            else if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.ONI){
+                setCardImageViews(i, oniImage);
+            }
         }
     }
 
-    public void display() {
-        for (int i=0; i<yokaiCards.length; i++) {
-            if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.KITSUNE){
-                cardImageViews[i] = new ImageView(kitsuneImage);
-            }
-            else if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.KAPPA){
-                cardImageViews[i] = new ImageView(kappaImage);
-            }
-            else if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.ROKUROKUBI){
-                cardImageViews[i] = new ImageView(rokurokubiImage);
-            }
-            else if (yokaiCards[i].getName() == YokaiNameEnum.YokaiName.ONI){
-                cardImageViews[i] = new ImageView(oniImage);
-            }
+    public void display() throws IOException {
 
+        for (YokaiCard yokaiCard: yokaiCards){
+            controller.addCards(yokaiCard);
+            System.out.println(yokaiCard.getName());
         }
     }
 }

@@ -1,8 +1,11 @@
 package com.example.yokai;
 
+import javafx.scene.image.ImageView;
+
 public class YokaiCard {
     private YokaiNameEnum.YokaiName name;
     private Position position;
+    private ImageView imageView;
 
     public void init(YokaiNameEnum.YokaiName name, Position position){
         this.name = name;
@@ -23,5 +26,13 @@ public class YokaiCard {
 
     public Position getPosition() {
         return position;
+    }
+
+    public void setImageView(ImageView imageView){
+        this.imageView = imageView;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
     }
 }

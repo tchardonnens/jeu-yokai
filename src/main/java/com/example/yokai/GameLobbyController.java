@@ -2,10 +2,7 @@ package com.example.yokai;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -17,21 +14,21 @@ import java.util.ArrayList;
 
 public class GameLobbyController {
 
+    public YokaiGame yokaiGame;
     public Label player1Label;
     public Label player2Label;
     public Label player3Label;
     public Label player4Label;
-
     public TextField nameTextField1;
     public TextField nameTextField2;
     public TextField nameTextField3;
     public TextField nameTextField4;
-
     public ToggleGroup numberOfPlayersRadioGroup;
-
-    public Stage gameWindow = new Stage();
-
     int numberOfPlayers = 0;
+
+    public void setYokaiGame(YokaiGame yokaiGame){
+        this.yokaiGame = yokaiGame;
+    }
 
     private void showEditable(Label playerLabel, TextField nameTextField) {
         playerLabel.setVisible(true);
@@ -48,7 +45,6 @@ public class GameLobbyController {
         RadioButton selectedRadioButton = (RadioButton) numberOfPlayersRadioGroup.getSelectedToggle();
         String toggleGroupValue = selectedRadioButton.getText();
         int toggleValue = Integer.parseInt(toggleGroupValue);
-
         switch (toggleValue) {
             case 2:
                 hideEditable(player3Label, nameTextField3);
@@ -81,18 +77,7 @@ public class GameLobbyController {
             players[i].init(playersName.get(i), null);
         }
 
-        YokaiGame.setPlayers(players, numberOfPlayers);
-
-        //Afficher la fenêtre du jeu
-        YokaiGame yokaiGame = new YokaiGame();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("game_board.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        gameWindow.setResizable(false);
-        gameWindow.setScene(scene);
-        gameWindow.show();
-        yokaiGame.playGame();
+        yokaiGame.setPlayers(players, numberOfPlayers);
 
         //Fermer la fenêtre du lobby
         Node source = (Node) actionEvent.getSource();

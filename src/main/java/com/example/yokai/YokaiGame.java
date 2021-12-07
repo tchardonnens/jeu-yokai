@@ -1,27 +1,35 @@
 package com.example.yokai;
 
+import java.io.IOException;
+
 public class YokaiGame {
     private int score = 0;
     private int level;
     private Board board;
-    private static int numberOfPlayersInGame = 0;
-    private static Player[] playersInGame;
+    private int numberOfPlayersInGame = 0;
+    private Player[] playersInGame;
 
-    public static void setPlayers(Player[] players, int numberOfPlayers) {
-        playersInGame = players;
-        numberOfPlayersInGame = numberOfPlayers;
+    private GameBoardController controller;
+
+    public void setGameBoardController(GameBoardController gameBoardController) {
+        this.controller = gameBoardController;
+    }
+
+    public void setPlayers(Player[] players, int numberOfPlayers) {
+        this.playersInGame = players;
+        this.numberOfPlayersInGame = numberOfPlayers;
     }
 
     public void initGame(){
         board = new Board();
-        board.init();
+        board.init(this.controller);
     }
 
-    public static Player[] getPlayers() {
+    public Player[] getPlayers() {
         return playersInGame;
     }
 
-    public static int getNumberOfPlayersInGame() {
+    public int getNumberOfPlayersInGame() {
         return numberOfPlayersInGame;
     }
 
@@ -29,10 +37,10 @@ public class YokaiGame {
         return score;
     }
 
-    public void playGame(){
-        /*initGame();
+    public void playGame() throws IOException {
+        initGame();
         board.display();
-        String saisie = null;
+        /*String saisie = null;
         do{
             if (saisie.equals("playTurn")){
                 playTurn();
