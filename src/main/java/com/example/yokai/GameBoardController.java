@@ -21,8 +21,8 @@ public class GameBoardController {
     public Circle iconPlayer3;
     public Circle iconPlayer4;
 
-    public static void setYokaiGame(YokaiGame yokaiGameParam){
-        yokaiGame = yokaiGameParam;
+    public static void setYokaiGame(YokaiGame yokaiGameFromMain){
+        yokaiGame = yokaiGameFromMain;
     }
 
     public void addCards(YokaiCard yokaiCard) {
@@ -36,6 +36,7 @@ public class GameBoardController {
 
     @FXML
     public void initialize() {
+        setYokaiGame(Main.yokaiGame);
         switch (yokaiGame.getNumberOfPlayersInGame()) {
             case 2 -> {
                 textPlayer1.setText((yokaiGame.getPlayers()[0].getName()));

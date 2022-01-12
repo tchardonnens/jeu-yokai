@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameLobbyController {
-
-    public YokaiGame yokaiGame;
     public Label player1Label;
     public Label player2Label;
     public Label player3Label;
@@ -24,11 +22,6 @@ public class GameLobbyController {
     public TextField nameTextField3;
     public TextField nameTextField4;
     public ToggleGroup numberOfPlayersRadioGroup;
-    int numberOfPlayers = 0;
-
-    public void setYokaiGame(YokaiGame yokaiGame){
-        this.yokaiGame = yokaiGame;
-    }
 
     private void showEditable(Label playerLabel, TextField nameTextField) {
         playerLabel.setVisible(true);
@@ -49,17 +42,17 @@ public class GameLobbyController {
             case 2:
                 hideEditable(player3Label, nameTextField3);
                 hideEditable(player4Label, nameTextField4);
-                numberOfPlayers = toggleValue;
+                Main.yokaiGame.setNumberOfPlayersInGame(toggleValue);
                 break;
             case 3:
                 showEditable(player3Label, nameTextField3);
                 hideEditable(player4Label, nameTextField4);
-                numberOfPlayers = toggleValue;
+                Main.yokaiGame.setNumberOfPlayersInGame(toggleValue);
                 break;
             case 4:
                 showEditable(player3Label, nameTextField3);
                 showEditable(player4Label, nameTextField4);
-                numberOfPlayers = toggleValue;
+                Main.yokaiGame.setNumberOfPlayersInGame(toggleValue);
                 break;
         }
     }
@@ -71,14 +64,12 @@ public class GameLobbyController {
         playersName.add(nameTextField2.getText());
         playersName.add(nameTextField3.getText());
         playersName.add(nameTextField4.getText());
-        Player[] players = new Player[numberOfPlayers];
-        for (int i = 0; i < numberOfPlayers; i++) {
+        Player[] players = new Player[Main.yokaiGame.getNumberOfPlayersInGame()];
+        for (int i = 0; i < Main.yokaiGame.getNumberOfPlayersInGame(); i++) {
             players[i] = new Player();
             players[i].init(playersName.get(i), null);
         }
-
-        yokaiGame.setPlayers(players, numberOfPlayers);
-
+        Main.yokaiGame.setPlayers(players);
         //Fermer la fenêtre du lobby
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();

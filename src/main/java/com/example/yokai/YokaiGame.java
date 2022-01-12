@@ -6,7 +6,7 @@ public class YokaiGame {
     private int score = 0;
     private int level;
     private Board board;
-    private int numberOfPlayersInGame = 0;
+    private int numberOfPlayersInGame;
     private Player[] playersInGame;
 
     private GameBoardController controller;
@@ -15,18 +15,21 @@ public class YokaiGame {
         this.controller = gameBoardController;
     }
 
-    public void setPlayers(Player[] players, int numberOfPlayers) {
-        this.playersInGame = players;
-        this.numberOfPlayersInGame = numberOfPlayers;
-    }
-
     public void initGame(){
         board = new Board();
         board.init(this.controller);
     }
 
+    public void setPlayers(Player[] players) {
+        this.playersInGame = players;
+    }
+
     public Player[] getPlayers() {
         return playersInGame;
+    }
+
+    public void setNumberOfPlayersInGame(int numberOfPlayersInGame){
+        this.numberOfPlayersInGame = numberOfPlayersInGame;
     }
 
     public int getNumberOfPlayersInGame() {
