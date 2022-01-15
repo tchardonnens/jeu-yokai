@@ -1,5 +1,6 @@
 package com.example.yokai.rules;
 
+import com.example.yokai.Main;
 import com.example.yokai.controllers.GameBoardController;
 
 import java.io.IOException;
@@ -18,8 +19,9 @@ public class YokaiGame {
     }
 
     public void initGame() throws IOException {
+        setGameBoardController(Main.gameBoardController);
         board = new Board();
-        board.init(this.controller);
+        board.init();
         playGame();
     }
 
@@ -44,7 +46,6 @@ public class YokaiGame {
     }
 
     public void playGame() throws IOException {
-        initGame();
         board.display();
         /*String saisie = null;
         do{

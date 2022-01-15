@@ -1,8 +1,6 @@
 package com.example.yokai.controllers;
 
-import com.example.yokai.Main;
 import com.example.yokai.rules.YokaiCard;
-import com.example.yokai.rules.YokaiGame;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -11,9 +9,10 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
+import static com.example.yokai.Main.yokaiGame;
+
 public class GameBoardController {
 
-    private static YokaiGame yokaiGame;
     public Pane boardPane;
     public Button playTurnButton;
     public Button calmedDownButton;
@@ -34,9 +33,6 @@ public class GameBoardController {
     private double mouseX;
     private double mouseY;
 
-    public static void setYokaiGame(YokaiGame yokaiGameFromMain){
-        yokaiGame = yokaiGameFromMain;
-    }
 
     public void addCards(YokaiCard yokaiCard) {
         boardPane.getChildren().add(yokaiCard.getImageView());
@@ -49,7 +45,6 @@ public class GameBoardController {
 
     @FXML
     public void initialize() throws IOException {
-        setYokaiGame(Main.yokaiGame);
         switch (yokaiGame.getNumberOfPlayersInGame()) {
             case 2 -> {
                 textPlayer1.setText((yokaiGame.getPlayers()[0].getName()));

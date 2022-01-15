@@ -15,6 +15,7 @@ public class Main extends Application {
     public Stage gameWindow = new Stage();
     public Stage lobbyWindow = new Stage();
     public static YokaiGame yokaiGame = new YokaiGame();
+    public static GameBoardController gameBoardController;
 
 
     @Override
@@ -33,8 +34,7 @@ public class Main extends Application {
         FXMLLoader gameLoader = new FXMLLoader();
         gameLoader.setLocation(getClass().getResource("game_board.fxml"));
         Parent gameRoot = gameLoader.load();
-        GameBoardController gameBoardController = gameLoader.getController();
-        yokaiGame.setGameBoardController(gameBoardController);
+        gameBoardController = gameLoader.getController();
         Scene gameScene = new Scene(gameRoot);
         gameWindow.setResizable(false);
         gameWindow.setScene(gameScene);

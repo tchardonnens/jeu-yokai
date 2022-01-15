@@ -1,21 +1,20 @@
 package com.example.yokai.rules;
 
+import com.example.yokai.Main;
 import com.example.yokai.controllers.GameBoardController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.*;
 
 public class Board {
-    private GameBoardController controller;
 
     FileInputStream kitsuneImageURL;
     {
         try {
-            kitsuneImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_kitsune.png");
+            kitsuneImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/kitsune.png");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -23,7 +22,7 @@ public class Board {
     FileInputStream kappaImageURL;
     {
         try {
-            kappaImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_kappa.png");
+            kappaImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/kappa.png");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -31,7 +30,7 @@ public class Board {
     FileInputStream rokurokubiImageURL;
     {
         try {
-            rokurokubiImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_rokurokubi.png");
+            rokurokubiImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/rokurokubi.png");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -39,7 +38,7 @@ public class Board {
     FileInputStream oniImageURL;
     {
         try {
-            oniImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/carte_oni.png");
+            oniImageURL = new FileInputStream("src/main/resources/com/example/yokai/images/oni.png");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -65,8 +64,7 @@ public class Board {
         yokaiCards[i].setImageView(cardImageViews[i]);
     }
 
-    public void init(GameBoardController controller){
-        this.controller = controller;
+    public void init(){
         for (int i = 0; i < 4; i++) {
             cardsPoolNames.add(YokaiNameEnum.YokaiName.KITSUNE);
             cardsPoolNames.add(YokaiNameEnum.YokaiName.ROKUROKUBI);
@@ -102,10 +100,10 @@ public class Board {
         }
     }
 
-    public void display() throws IOException {
+    public void display() {
 
         for (YokaiCard yokaiCard: yokaiCards){
-            controller.addCards(yokaiCard);
+            Main.gameBoardController.addCards(yokaiCard);
             System.out.println(yokaiCard.getName());
         }
     }
