@@ -1,6 +1,4 @@
-package com.example.yokai;
-
-import javafx.geometry.Pos;
+package com.example.yokai.rules;
 
 import java.util.List;
 import java.util.Optional;

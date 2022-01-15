@@ -1,4 +1,4 @@
-package com.example.yokai;
+package com.example.yokai.rules;
 
 import java.util.Optional;
 

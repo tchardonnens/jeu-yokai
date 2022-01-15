@@ -1,5 +1,8 @@
 package com.example.yokai;
 
+import com.example.yokai.controllers.GameBoardController;
+import com.example.yokai.controllers.GameLobbyController;
+import com.example.yokai.rules.YokaiGame;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +15,7 @@ public class Main extends Application {
     public Stage gameWindow = new Stage();
     public Stage lobbyWindow = new Stage();
     public static YokaiGame yokaiGame = new YokaiGame();
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -35,6 +39,7 @@ public class Main extends Application {
         gameWindow.setResizable(false);
         gameWindow.setScene(gameScene);
         gameWindow.show();
+
     }
 
     public static void main(String[] args) {

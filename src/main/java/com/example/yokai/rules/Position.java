@@ -1,4 +1,4 @@
-package com.example.yokai;
+package com.example.yokai.rules;
 
 public class Position {
     private int x;

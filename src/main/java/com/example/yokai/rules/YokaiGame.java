@@ -1,4 +1,6 @@
-package com.example.yokai;
+package com.example.yokai.rules;
+
+import com.example.yokai.controllers.GameBoardController;
 
 import java.io.IOException;
 
@@ -15,9 +17,10 @@ public class YokaiGame {
         this.controller = gameBoardController;
     }
 
-    public void initGame(){
+    public void initGame() throws IOException {
         board = new Board();
         board.init(this.controller);
+        playGame();
     }
 
     public void setPlayers(Player[] players) {

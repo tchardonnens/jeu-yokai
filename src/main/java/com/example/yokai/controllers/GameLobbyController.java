@@ -1,5 +1,7 @@
-package com.example.yokai;
+package com.example.yokai.controllers;
 
+import com.example.yokai.Main;
+import com.example.yokai.rules.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;

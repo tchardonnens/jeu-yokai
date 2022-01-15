@@ -1,10 +1,15 @@
-package com.example.yokai;
+package com.example.yokai.controllers;
 
+import com.example.yokai.Main;
+import com.example.yokai.rules.YokaiCard;
+import com.example.yokai.rules.YokaiGame;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 public class GameBoardController {
 
@@ -21,6 +26,14 @@ public class GameBoardController {
     public Circle iconPlayer3;
     public Circle iconPlayer4;
 
+    private YokaiCard tempCard;
+
+    private double oldX;
+    private double oldY;
+
+    private double mouseX;
+    private double mouseY;
+
     public static void setYokaiGame(YokaiGame yokaiGameFromMain){
         yokaiGame = yokaiGameFromMain;
     }
@@ -35,7 +48,7 @@ public class GameBoardController {
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         setYokaiGame(Main.yokaiGame);
         switch (yokaiGame.getNumberOfPlayersInGame()) {
             case 2 -> {
@@ -57,6 +70,9 @@ public class GameBoardController {
                 textPlayer4.setText((yokaiGame.getPlayers()[3].getName()));
             }
         }
+        yokaiGame.initGame();
+
+
     }
 
     @FXML

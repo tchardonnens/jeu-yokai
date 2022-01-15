@@ -1,5 +1,6 @@
-package com.example.yokai;
+package com.example.yokai.rules;
 
+import com.example.yokai.controllers.GameBoardController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -59,7 +60,7 @@ public class Board {
     public void setCardImageViews(int i, Image image) {
         cardImageViews[i] = new ImageView(image);
         cardImageViews[i].setX(yokaiCards[i].getPosition().getX());
-        cardImageViews[i].setY(yokaiCards[i].getPosition().getX());
+        cardImageViews[i].setY(yokaiCards[i].getPosition().getY());
         cardImageViews[i].setPreserveRatio(true);
         yokaiCards[i].setImageView(cardImageViews[i]);
     }
