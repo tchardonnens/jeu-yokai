@@ -1,12 +1,17 @@
 package com.example.yokai.controllers;
 
+import com.example.yokai.gui.Card;
+import com.example.yokai.rules.Board;
 import com.example.yokai.rules.YokaiCard;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static com.example.yokai.Main.yokaiGame;
@@ -33,9 +38,22 @@ public class GameBoardController {
     private double mouseX;
     private double mouseY;
 
+    private Group group = new Group();
+    private Card[] cards = new Card[16];
+    private Board board = new Board();
 
-    public void addCards(YokaiCard yokaiCard) {
-        boardPane.getChildren().add(yokaiCard.getImageView());
+    public void addCardsToBoard() throws FileNotFoundException {
+        YokaiCard[] yokaiCards = board.setYokaiCards();
+        int i = 0;
+        for (YokaiCard yokaiCard : yokaiCards){
+            String cardID = "card"+i;
+            cards[i] = new Card(yokaiCard, cardID);
+            boardPane.setVisible(true);
+            boardPane.getChildren().add(cards[i]);
+            i+=1;
+        }
+        boardPane.setTranslateX(boardPane.getPrefWidth()/8);
+        boardPane.setTranslateY(boardPane.getPrefHeight()/1200);
     }
 
     public void hidePlayers(Text textPlayer, Circle iconPlayer) {
@@ -65,8 +83,8 @@ public class GameBoardController {
                 textPlayer4.setText((yokaiGame.getPlayers()[3].getName()));
             }
         }
-        yokaiGame.initGame();
-
+        addCardsToBoard();
+        yokaiGame.playGame();
 
     }
 

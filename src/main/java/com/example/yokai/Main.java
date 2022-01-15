@@ -15,8 +15,11 @@ public class Main extends Application {
     public Stage gameWindow = new Stage();
     public Stage lobbyWindow = new Stage();
     public static YokaiGame yokaiGame = new YokaiGame();
-    public static GameBoardController gameBoardController;
+    private GameBoardController gameBoardController;
 
+    public GameBoardController getGameBoardController() {
+        return gameBoardController;
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -29,6 +32,8 @@ public class Main extends Application {
         lobbyWindow.setResizable(false);
         lobbyWindow.setScene(lobbyScene);
         lobbyWindow.showAndWait();
+
+
 
         //Afficher la fenêtre du jeu
         FXMLLoader gameLoader = new FXMLLoader();

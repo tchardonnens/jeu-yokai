@@ -7,25 +7,36 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class Card extends Rectangle {
     private YokaiCard yokaiCard;
-    private Image image;
-    private boolean draggable = true;
-    private String imageLocation;
+    private Image visibleImage;
+    private Image hiddenImage;
+    private boolean draggable;
     private String id;
 
-    public Card(YokaiCard yokaiCard, String id){
-        super(150,150);
+    public Card(YokaiCard yokaiCard, String id) throws FileNotFoundException {
+        super(80,80);
+        super.setTranslateX(yokaiCard.getPosition().getX());
+        super.setTranslateY(yokaiCard.getPosition().getY());
         this.id = id;
         this.yokaiCard = yokaiCard;
-        imageLocation = "/ressources/com/example/yokai/images"+yokaiCard.getName().toString().toLowerCase()+".png";
+        this.draggable = yokaiCard.isDraggable();
+
+        FileInputStream visibleImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/"+yokaiCard.getName().toString().toLowerCase()+".png");
+        //super.setStyle("-fx-background-image: url(" + visibleImageLocation +"); -fx-background-repeat: no-repeat;-fx-background-size: contain;");
+        visibleImage = new Image(visibleImageLocation);
+
+        FileInputStream hiddenImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/dos_carte.png");
+        //super.setStyle("-fx-background-image: url(" + hiddenImageLocation +"); -fx-background-repeat: no-repeat;-fx-background-size: contain;");
+        hiddenImage = new Image(hiddenImageLocation);
+
+        super.setFill(new ImagePattern(hiddenImage));
         super.setArcHeight(15);
         super.setArcWidth(15);
-        super.setStyle("-fx-background-image: url(" + imageLocation +"); -fx-background-repeat: no-repeat;-fx-background-size: contain;");
-        image = new Image(imageLocation);
-        super.setFill(new ImagePattern(image));
         super.setStroke(Color.BLACK);
-        super.setManaged(false);
         super.setId(id);
     }
 

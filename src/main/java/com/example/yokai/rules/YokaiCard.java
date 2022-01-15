@@ -1,15 +1,14 @@
 package com.example.yokai.rules;
 
-import javafx.scene.image.ImageView;
-
 public class YokaiCard {
     private YokaiNameEnum.YokaiName name;
     private Position position;
-    private ImageView imageView;
+    private boolean draggable;
 
-    public void init(YokaiNameEnum.YokaiName name, Position position){
+    public YokaiCard(YokaiNameEnum.YokaiName name, Position position){
         this.name = name;
         this.position = position;
+        this.draggable = true;
     }
 
     public void setName(YokaiNameEnum.YokaiName name) {
@@ -28,11 +27,11 @@ public class YokaiCard {
         return position;
     }
 
-    public void setImageView(ImageView imageView){
-        this.imageView = imageView;
+    public void setDraggable(boolean draggable) {
+        this.draggable = false;
     }
 
-    public ImageView getImageView() {
-        return imageView;
+    public boolean isDraggable() {
+        return draggable;
     }
 }
