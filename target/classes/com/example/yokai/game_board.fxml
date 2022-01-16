@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="1029.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.yokai.controllers.GameBoardController">
    <center>
-      <Pane fx:id="boardPane" prefHeight="381.0" prefWidth="610.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="boardPane" prefHeight="624.0" prefWidth="935.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <HBox prefHeight="70.0" prefWidth="770.0" style="-fx-background-color: #2C2B2B;" BorderPane.alignment="CENTER">

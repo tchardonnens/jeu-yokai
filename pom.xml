@@ -15,6 +15,14 @@
         <sdk>/Users/thomas/Documents/Code/javafx-sdk-18</sdk>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ThomasCdnns/jeu-yokai</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>

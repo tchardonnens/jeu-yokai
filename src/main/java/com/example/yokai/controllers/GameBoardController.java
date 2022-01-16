@@ -2,6 +2,7 @@ package com.example.yokai.controllers;
 
 import com.example.yokai.gui.Card;
 import com.example.yokai.rules.Board;
+import com.example.yokai.rules.Player;
 import com.example.yokai.rules.YokaiCard;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -19,6 +20,7 @@ import static com.example.yokai.Main.yokaiGame;
 public class GameBoardController {
 
     public Pane boardPane;
+    public Pane cluesPane;
     public Button playTurnButton;
     public Button calmedDownButton;
     public Text textPlayer1;
@@ -54,6 +56,11 @@ public class GameBoardController {
         }
         boardPane.setTranslateX(boardPane.getPrefWidth()/8);
         boardPane.setTranslateY(boardPane.getPrefHeight()/1200);
+    }
+
+    public void addCluesToPlayerSidePanel(Player currentPlayer) {
+        currentPlayer.getYokaiClues();
+
     }
 
     public void hidePlayers(Text textPlayer, Circle iconPlayer) {

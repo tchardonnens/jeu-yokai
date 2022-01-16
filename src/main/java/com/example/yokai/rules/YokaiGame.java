@@ -30,7 +30,7 @@ public class YokaiGame {
     }
 
     public void playGame() throws IOException {
-        
+
 
 
         /*String saisie = null;
