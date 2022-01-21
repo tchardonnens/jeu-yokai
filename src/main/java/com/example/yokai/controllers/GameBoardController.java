@@ -1,19 +1,18 @@
 package com.example.yokai.controllers;
 
 import com.example.yokai.gui.Card;
-import com.example.yokai.rules.Board;
-import com.example.yokai.rules.Player;
-import com.example.yokai.rules.YokaiCard;
+import com.example.yokai.gui.Clue;
+import com.example.yokai.rules.*;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import static com.example.yokai.Main.yokaiGame;
 
@@ -43,9 +42,11 @@ public class GameBoardController {
     private Group group = new Group();
     private Card[] cards = new Card[16];
     private Board board = new Board();
+    private Clue[] clues = new Clue[4];
 
     public void addCardsToBoard() throws FileNotFoundException {
-        YokaiCard[] yokaiCards = board.setYokaiCards();
+        board.initYokaiCards();
+        YokaiCard[] yokaiCards = board.getYokaiCards();
         int i = 0;
         for (YokaiCard yokaiCard : yokaiCards){
             String cardID = "card"+i;
@@ -58,9 +59,25 @@ public class GameBoardController {
         boardPane.setTranslateY(boardPane.getPrefHeight()/1200);
     }
 
-    public void addCluesToPlayerSidePanel(Player currentPlayer) {
-        currentPlayer.getYokaiClues();
+    public void playerPicksNewClue(Player player){
+        player.addYokaiClue(board.getYokaiCluesStack().pop());
+    }
 
+    public void addCluesToPlayerSidePanel(Player currentPlayer) throws FileNotFoundException {
+        List<YokaiClue> yokaiClues = currentPlayer.getYokaiClues();
+        int i =0;
+        for (YokaiClue yokaiClue : yokaiClues){
+            String clueID = "clue"+i;
+            Position position = new Position();
+            position.init(0, i*100);
+            yokaiClue.setPosition(position);
+            clues[i] = new Clue(yokaiClue, clueID);
+            cluesPane.setVisible(true);
+            cluesPane.getChildren().add(clues[i]);
+            i+=1;
+        }
+        cluesPane.setTranslateX(cluesPane.getPrefWidth()/10);
+        cluesPane.setTranslateY(cluesPane.getPrefHeight()/10);
     }
 
     public void hidePlayers(Text textPlayer, Circle iconPlayer) {
@@ -91,7 +108,11 @@ public class GameBoardController {
             }
         }
         addCardsToBoard();
-        yokaiGame.playGame();
+        board.initYokaiClues(yokaiGame.getNumberOfPlayersInGame());
+        playerPicksNewClue(yokaiGame.getPlayers()[0]);
+        playerPicksNewClue(yokaiGame.getPlayers()[0]);
+        addCluesToPlayerSidePanel(yokaiGame.getPlayers()[0]);
+        //yokaiGame.playGame();
 
     }
 

@@ -1,19 +1,38 @@
 package com.example.yokai.rules;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class YokaiClue {
-    private List<YokaiNameEnum> similarFamilies;
+    private YokaiNameEnum.YokaiName[] allFamilies = YokaiNameEnum.YokaiName.values();
+    private List<YokaiNameEnum.YokaiName> similarFamilies = new ArrayList<>();
     private Position position;
     private boolean draggable;
     private String name;
 
-    public YokaiClue() {
+    public YokaiClue(String name) {
         this.draggable = true;
-
+        this.name = name;
+        setSimilarFamilies();
     }
 
-    public List<YokaiNameEnum> getSimilarFamilies() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSimilarFamilies() {
+        for (int i=0; i<this.name.length(); i++){
+            if (Integer.parseInt(String.valueOf(name.charAt(i)))==1){
+                similarFamilies.add(allFamilies[i]);
+            }
+        }
+    }
+
+    public List<YokaiNameEnum.YokaiName> getSimilarFamilies() {
         return similarFamilies;
     }
 

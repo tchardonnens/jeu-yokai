@@ -25,15 +25,32 @@ public class Clue extends Rectangle {
         this.yokaiClue = yokaiClue;
         this.draggable = yokaiClue.isDraggable();
 
-        FileInputStream visibleImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/"+yokaiClue.getName().toString().toLowerCase()+".png");
+        FileInputStream visibleImageLocation;
+
+        switch (yokaiClue.getSimilarFamilies().size()){
+            case 1:
+                visibleImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/clues/1_color/"+yokaiClue.getName()+".png");
+                break;
+            case 2:
+                visibleImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/clues/2_colors/"+yokaiClue.getName()+".png");
+                break;
+            case 3:
+                visibleImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/clues/3_colors/"+yokaiClue.getName()+".png");
+                break;
+            default:
+                visibleImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/dos_carte.png");
+                break;
+        }
+
+
         //super.setStyle("-fx-background-image: url(" + visibleImageLocation +"); -fx-background-repeat: no-repeat;-fx-background-size: contain;");
         visibleImage = new Image(visibleImageLocation);
 
-        FileInputStream hiddenImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/dos_carte.png");
+        FileInputStream hiddenImageLocation = new FileInputStream("src/main/resources/com/example/yokai/images/dos_indice.png");
         //super.setStyle("-fx-background-image: url(" + hiddenImageLocation +"); -fx-background-repeat: no-repeat;-fx-background-size: contain;");
         hiddenImage = new Image(hiddenImageLocation);
 
-        super.setFill(new ImagePattern(hiddenImage));
+        super.setFill(new ImagePattern(visibleImage));
         super.setArcHeight(15);
         super.setArcWidth(15);
         super.setStroke(Color.BLACK);

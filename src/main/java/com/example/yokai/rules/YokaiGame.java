@@ -5,7 +5,6 @@ import java.io.IOException;
 public class YokaiGame {
     private int score = 0;
     private int level;
-    private Board board;
     private int numberOfPlayersInGame;
     private Player[] playersInGame;
 
@@ -47,7 +46,8 @@ public class YokaiGame {
     }
 
     public void playTurn(){
-        Position position1 = askCardToShow();
+        System.out.println("Test");
+        /*Position position1 = askCardToShow();
         Position position2 = askCardToShow();
         show2Cards(position1, position2);
 
@@ -55,7 +55,7 @@ public class YokaiGame {
         Position targetPosition = new Position();
         while (!isValidMove(sourceCard, targetPosition)){
             playCardMove();
-        }
+        }*/
         //To continue with clues cards
     }
 
