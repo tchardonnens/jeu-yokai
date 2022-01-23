@@ -4,15 +4,17 @@ import com.example.yokai.gui.Card;
 import com.example.yokai.gui.Clue;
 import com.example.yokai.rules.*;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 import static com.example.yokai.Main.yokaiGame;
 
@@ -26,10 +28,14 @@ public class GameBoardController {
     public Text textPlayer2;
     public Text textPlayer3;
     public Text textPlayer4;
+    public List<Text> textPlayers = new ArrayList<>();
+    public HashMap<String, Text> playersLabel = new HashMap<>();
     public Circle iconPlayer1;
     public Circle iconPlayer2;
     public Circle iconPlayer3;
     public Circle iconPlayer4;
+    public List<Circle> circlePlayers = new ArrayList<>();
+    public HashMap<String, Circle> playersCircle = new HashMap<>();
 
     private YokaiCard tempCard;
 
@@ -39,10 +45,15 @@ public class GameBoardController {
     private double mouseX;
     private double mouseY;
 
+    private ArrayList<Card> cardsSelected = new ArrayList<>();
+
     private Group group = new Group();
     private Card[] cards = new Card[16];
     private Board board = new Board();
     private Clue[] clues = new Clue[4];
+    boolean isEndGame = false;
+    boolean isPlayingTurn = false;
+    boolean isAskingCalmedDown = false;
 
     public void addCardsToBoard() throws FileNotFoundException {
         board.initYokaiCards();
@@ -87,6 +98,10 @@ public class GameBoardController {
 
     @FXML
     public void initialize() throws IOException {
+        playTurnButton.setVisible(false);
+        playTurnButton.setDisable(true);
+        calmedDownButton.setVisible(false);
+        calmedDownButton.setDisable(true);
         switch (yokaiGame.getNumberOfPlayersInGame()) {
             case 2 -> {
                 textPlayer1.setText((yokaiGame.getPlayers()[0].getName()));
@@ -107,23 +122,88 @@ public class GameBoardController {
                 textPlayer4.setText((yokaiGame.getPlayers()[3].getName()));
             }
         }
+        circlePlayers = Arrays.asList(iconPlayer1, iconPlayer2, iconPlayer3, iconPlayer4);
+        textPlayers = Arrays.asList(textPlayer1, textPlayer2, textPlayer3, textPlayer4);
+        for (int i=0; i< yokaiGame.getNumberOfPlayersInGame(); i++){
+            playersLabel.put(yokaiGame.getPlayers()[i].getName(), textPlayers.get(i));
+            playersCircle.put(yokaiGame.getPlayers()[i].getName(), circlePlayers.get(i));
+        }
+
         addCardsToBoard();
         board.initYokaiClues(yokaiGame.getNumberOfPlayersInGame());
-        playerPicksNewClue(yokaiGame.getPlayers()[0]);
-        playerPicksNewClue(yokaiGame.getPlayers()[0]);
-        addCluesToPlayerSidePanel(yokaiGame.getPlayers()[0]);
-        //yokaiGame.playGame();
+        playGame();
 
+        //playerPicksNewClue(yokaiGame.getPlayers()[0]);
+        //playerPicksNewClue(yokaiGame.getPlayers()[0]);
+        //addCluesToPlayerSidePanel(yokaiGame.getPlayers()[0]);
+    }
+
+    @FXML
+    public void playGame() {
+        yokaiGame.setCurrentPlayer();
+        playersLabel.get(yokaiGame.getCurrentPlayer().getName()).setFill(Color.GREEN);
+        playersCircle.get(yokaiGame.getCurrentPlayer().getName()).setFill(Color.GREEN);
+        playTurnButton.setVisible(true);
+        playTurnButton.setDisable(false);
+        calmedDownButton.setVisible(true);
+        calmedDownButton.setDisable(false);
     }
 
     @FXML
     private void playTurn() {
-        yokaiGame.playTurn();
+        playTurnButton.setVisible(false);
+        playTurnButton.setDisable(true);
+        calmedDownButton.setVisible(false);
+        calmedDownButton.setDisable(true);
+        for (Card card : cards) {
+
+            card.setOnMouseEntered(e -> {
+                if(card.getDraggable() && cardsSelected.size()<2) {
+                    card.setCursor(Cursor.HAND);
+                    card.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+                }
+            });
+
+            card.setOnMouseExited(e -> {
+                if(card.getDraggable() && cardsSelected.size()<2) {
+                    card.setStyle("-fx-effect: none;");
+                }
+            });
+
+            card.setOnMousePressed(e -> {
+                if(card.getDraggable() && cardsSelected.size()<2 && !cardsSelected.contains(card))  {
+                    card.flipCard();
+                    Timer showCardTimer = new Timer();
+                    showCardTimer.schedule(new TimerTask(){
+                        @Override
+                        public void run() {
+                            card.flipCard();
+                        }
+                    }, 2000);
+                    if (!cardsSelected.contains(card)){
+                        cardsSelected.add(card);
+                    }
+                    if (cardsSelected.size() == 2){
+                        yokaiGame.playTurn();
+                    }
+                    card.setStyle("-fx-effect: none;");
+                }
+            });
+
+
+
+        }
     }
 
     @FXML
     private void calmDown() {
+        playTurnButton.setVisible(false);
+        playTurnButton.setDisable(true);
+        calmedDownButton.setVisible(false);
+        calmedDownButton.setDisable(true);
         yokaiGame.askIfYokaiCalmDown();
     }
+
+
 
 }

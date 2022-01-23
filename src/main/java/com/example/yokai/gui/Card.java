@@ -2,7 +2,9 @@ package com.example.yokai.gui;
 
 import com.example.yokai.rules.Position;
 import com.example.yokai.rules.YokaiCard;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -16,6 +18,8 @@ public class Card extends Rectangle {
     private Image hiddenImage;
     private boolean draggable;
     private String id;
+    private boolean isHidden = true;
+    private boolean isStuck = false;
 
     public Card(YokaiCard yokaiCard, String id) throws FileNotFoundException {
         super(80,80);
@@ -38,6 +42,15 @@ public class Card extends Rectangle {
         super.setArcWidth(15);
         super.setStroke(Color.BLACK);
         super.setId(id);
+        /*//Creating the mouse event handler
+        EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                System.out.println(id + " card clicked, position is : " + yokaiCard.getPosition().getX()+ ", " + yokaiCard.getPosition().getY());
+            }
+        };
+        //Registering the event filter
+        super.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);*/
     }
 
     public boolean getDraggable() {
@@ -47,5 +60,22 @@ public class Card extends Rectangle {
     public void setDraggable(boolean value) {
         this.draggable = value;
     }
+
+    public void flipCard(){
+        if (isHidden){
+            super.setFill(new ImagePattern(visibleImage));
+            isHidden = false;
+        }
+        else {
+            super.setFill(new ImagePattern(hiddenImage));
+            isHidden = true;
+        }
+    }
+
+    public YokaiCard getYokaiCard() {
+        return yokaiCard;
+    }
+
+
 
 }

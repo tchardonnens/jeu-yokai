@@ -32,6 +32,8 @@ public class YokaiCard {
     }
 
     public boolean isDraggable() {
+
         return draggable;
     }
+
 }

@@ -1,15 +1,23 @@
 package com.example.yokai.rules;
 
+import javafx.geometry.Pos;
+
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class YokaiGame {
     private int score = 0;
     private int level;
     private int numberOfPlayersInGame;
     private Player[] playersInGame;
+    private Player currentPlayer;
+    private Queue<Player> nextPlayer = new LinkedList<>();
 
     public void setPlayers(Player[] players) {
         this.playersInGame = players;
+        nextPlayer.addAll(List.of(playersInGame));
     }
 
     public Player[] getPlayers() {
@@ -22,6 +30,15 @@ public class YokaiGame {
 
     public int getNumberOfPlayersInGame() {
         return numberOfPlayersInGame;
+    }
+
+    public void setCurrentPlayer() {
+        currentPlayer = nextPlayer.poll();
+        nextPlayer.add(currentPlayer);
+    }
+
+    public Player getCurrentPlayer(){
+        return currentPlayer;
     }
 
     public int getScore() {
@@ -46,16 +63,13 @@ public class YokaiGame {
     }
 
     public void playTurn(){
-        System.out.println("Test");
-        /*Position position1 = askCardToShow();
-        Position position2 = askCardToShow();
-        show2Cards(position1, position2);
+        System.out.println("Playing Turn");
 
         YokaiCard sourceCard = askCardMove();
         Position targetPosition = new Position();
-        while (!isValidMove(sourceCard, targetPosition)){
+        if (!isValidMove(sourceCard, targetPosition)){
             playCardMove();
-        }*/
+        }
         //To continue with clues cards
     }
 
