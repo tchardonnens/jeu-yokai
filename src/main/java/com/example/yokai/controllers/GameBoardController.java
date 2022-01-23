@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.scene.Node;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,13 +38,15 @@ public class GameBoardController {
     public List<Circle> circlePlayers = new ArrayList<>();
     public HashMap<String, Circle> playersCircle = new HashMap<>();
 
-    private YokaiCard tempCard;
+    private Card tempCard;
 
     private double oldX;
     private double oldY;
 
-    private double mouseX;
-    private double mouseY;
+    private double mouseAnchorX;
+    private double mouseAnchorY;
+
+    private boolean isValidMove;
 
     private ArrayList<Card> cardsSelected = new ArrayList<>();
 
@@ -156,7 +159,6 @@ public class GameBoardController {
         calmedDownButton.setVisible(false);
         calmedDownButton.setDisable(true);
         for (Card card : cards) {
-
             card.setOnMouseEntered(e -> {
                 if(card.getDraggable() && cardsSelected.size()<2) {
                     card.setCursor(Cursor.HAND);
@@ -184,15 +186,89 @@ public class GameBoardController {
                         cardsSelected.add(card);
                     }
                     if (cardsSelected.size() == 2){
-                        yokaiGame.playTurn();
+                        cardMove();
                     }
                     card.setStyle("-fx-effect: none;");
                 }
             });
-
-
-
         }
+    }
+
+    @FXML
+    private void cardMove(){
+        System.out.println("Choose the card to move");
+        for (Card card : cards) {
+            card.setOnMouseEntered(e -> {
+                if(card.getDraggable()) {
+                    card.setCursor(Cursor.HAND);
+                    card.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+                }
+            });
+
+            card.setOnMouseExited(e -> {
+                if(card.getDraggable()) {
+                    card.setStyle("-fx-effect: none;");
+                }
+            });
+
+            card.setOnMousePressed(e -> {
+                if(card.getDraggable())  {
+                    moveTempCard(card);
+                }
+            });
+        }
+    }
+
+    private void moveTempCard(Card card) {
+        try {
+            tempCard = new Card(board.createTempCard(card.getYokaiCard()), "tempCard");
+            boardPane.getChildren().add(tempCard);
+            tempCard.toFront();
+            card.setVisible(false);
+            tempCard.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        tempCard.setCursor(Cursor.HAND);
+
+        oldX = card.getLayoutX();
+        oldY = card.getLayoutY();
+
+        tempCard.setOnMousePressed(mouseEvent -> {
+            System.out.println("Pressed");
+            tempCard.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(67,19,187,0.8), 10, 0, 0, 0);");
+            mouseAnchorX = mouseEvent.getSceneX();
+            mouseAnchorY = mouseEvent.getSceneY();
+
+        });
+
+        tempCard.setOnMouseDragged(mouseEvent -> {
+            System.out.println("Dragged");
+            tempCard.setCursor(Cursor.CLOSED_HAND);
+            tempCard.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX + oldX);
+            tempCard.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY + oldY);
+
+        });
+
+
+        tempCard.setOnMouseReleased(b -> {
+            System.out.println("Released");
+            double releasedX = tempCard.getLayoutX();
+            double releasedY = tempCard.getLayoutY();
+
+            Position tempPosition = new Position();
+            tempPosition.init((int) releasedX, (int) releasedY);
+
+            isValidMove = yokaiGame.isValidMove(board.getYokaiCards(), card.getYokaiCard(), tempPosition);
+
+            if ((releasedX != card.getLayoutX()) && (releasedY != card.getLayoutY())) {
+                this.tempCard.setVisible(false);
+                boardPane.getChildren().remove(tempCard);
+                card.setVisible(true);
+            }
+
+
+        });
     }
 
     @FXML

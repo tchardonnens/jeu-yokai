@@ -91,6 +91,11 @@ public class Board {
         yokaiCluesStack.addAll(List.of(yokaiClues));
     }
 
+    public YokaiCard createTempCard(YokaiCard cardToDuplicate){
+        YokaiCard tempCard = new YokaiCard(cardToDuplicate.getName(), cardToDuplicate.getPosition());
+        return tempCard;
+    }
+
     private List<File> pickFromColorList(List<File> yokaiCluesXColors, int numberOfCardsToPick){
         for (int i=0; i<numberOfCardsToPick+1; i++){
             yokaiCluesAllColors.add(yokaiCluesXColors.get(i));
@@ -107,6 +112,5 @@ public class Board {
     }
 
     public void display() {
-
     }
 }
