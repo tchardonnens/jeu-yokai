@@ -71,6 +71,13 @@ public class GameBoardController {
         }
         boardPane.setTranslateX(boardPane.getPrefWidth()/8);
         boardPane.setTranslateY(boardPane.getPrefHeight()/1200);
+        int k = 0;
+        for (Card card : cards){
+            double X = boardPane.getChildren().get(k).getLayoutX();
+            double Y = boardPane.getChildren().get(k).getLayoutY();
+            System.out.println(k + " X : " + X + " Y : " + Y);
+            k+=1;
+        }
     }
 
     public void playerPicksNewClue(Player player){
@@ -235,7 +242,6 @@ public class GameBoardController {
         oldY = card.getLayoutY();
 
         tempCard.setOnMousePressed(mouseEvent -> {
-            System.out.println("Pressed");
             tempCard.setStyle("-fx-effect: dropshadow(three-pass-box, rgba(67,19,187,0.8), 10, 0, 0, 0);");
             mouseAnchorX = mouseEvent.getSceneX();
             mouseAnchorY = mouseEvent.getSceneY();
@@ -243,7 +249,6 @@ public class GameBoardController {
         });
 
         tempCard.setOnMouseDragged(mouseEvent -> {
-            System.out.println("Dragged");
             tempCard.setCursor(Cursor.CLOSED_HAND);
             tempCard.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX + oldX);
             tempCard.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY + oldY);
@@ -252,7 +257,6 @@ public class GameBoardController {
 
 
         tempCard.setOnMouseReleased(b -> {
-            System.out.println("Released");
             double releasedX = tempCard.getLayoutX();
             double releasedY = tempCard.getLayoutY();
 
@@ -261,7 +265,28 @@ public class GameBoardController {
 
             isValidMove = yokaiGame.isValidMove(board.getYokaiCards(), card.getYokaiCard(), tempPosition);
 
-            if ((releasedX != card.getLayoutX()) && (releasedY != card.getLayoutY())) {
+            if (isValidMove){
+                Position newPosition = yokaiGame.alignOnGrid(tempPosition);
+                card.getYokaiCard().setPosition(newPosition);
+
+                // Update board
+                YokaiCard[] newYokaiCards = new YokaiCard[16];
+                int i = 0;
+                for (Card card1 : cards){
+                    newYokaiCards[i] = card1.getYokaiCard();
+                    i += 1;
+                }
+                board.setYokaiCards(newYokaiCards);
+
+                // Update GUI Board
+                boardPane.getChildren().remove(tempCard);
+                card.setLayoutX(newPosition.getX());
+                card.setLayoutY(newPosition.getY());
+                card.setVisible(true);
+
+            }
+
+            else {
                 this.tempCard.setVisible(false);
                 boardPane.getChildren().remove(tempCard);
                 card.setVisible(true);
