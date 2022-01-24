@@ -1,1 +1,6 @@
 # jeu-yokai
+
+Dans la continuité de notre semestre d’algorithmie et de programmation en Java, nous devions produire un jeu de cartes appelé jeu du « Yokai ». Le principe du jeu consiste à rassembler des familles de cartes d’esprits Japonais (4 familles et 16 cartes au total) sans que les joueurs n’aient le droit de communiquer verbalement entre eux. Pour s’aider ils n’ont le droit que de poser des cartes indices sur les cartes dont ils connaissent la famille. Chaque joueur joue tour à tour, et doit consécutivement regarder la famille de deux cartes, en déplacer une pour la rapprocher de sa famille, et piocher un nouvel indice ou en poser un sur une carte du jeu. La partie s’arrête quand un joueur déclare que les Yokais sont apaisés : on retourne alors toutes les cartes visibles pour savoir si toutes les familles sont réunies.
+
+Pour réaliser ce jeu, nous devions utiliser le langage de programmation Java et construire l’interface graphique avec Java FX. JavaFX est un ensemble de paquets graphiques et multimédias qui permet aux développeurs de concevoir, créer, tester, déboguer et déployer des applications client sur diverses plates-formes.
+![image](https://user-images.githubusercontent.com/61554870/150858762-1383e280-65b0-4e61-985b-40fd025bfb29.png)
